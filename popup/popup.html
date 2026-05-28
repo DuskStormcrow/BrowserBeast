@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrowserBeast</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <img class="header-logo" src="../icons/icon48.png" alt="BrowserBeast" width="36" height="36">
+      <div class="header-text">
+        <h1 class="title"><span class="title-data">Browser</span><span class="title-beast">Beast</span><sup class="title-tm">™</sup></h1>
+        <p class="tagline">Capture. Export. Enjoy.</p>
+      </div>
+      <button class="header-share-btn" id="shareBtn" title="Share">⋯</button>
+    </header>
+
+    <div class="status-strip" id="statusStrip">
+      <span class="status-dot" id="statusDot"></span>
+      <span class="status-text" id="statusText">Ready to capture</span>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CAPTURE STAGE                                                 -->
+    <!-- ============================================================ -->
+    <section class="stage stage-capture" id="stageCapture">
+      <h2 class="section-label">CAPTURE MODE</h2>
+      <div class="capture-grid">
+        <button class="capture-btn" id="btnFullRender">
+          <span class="btn-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+          </span>
+          <span class="btn-label">Full Render</span>
+          <span class="btn-desc">Entire page content</span>
+        </button>
+        <button class="capture-btn" id="btnHighlightedText">
+          <span class="btn-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </span>
+          <span class="btn-label">Highlighted Text</span>
+          <span class="btn-desc">Selected text only</span>
+        </button>
+      </div>
+      <p class="hint" id="selectionHint"></p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PREVIEW STAGE                                                 -->
+    <!-- ============================================================ -->
+    <section class="stage stage-preview hidden" id="stagePreview">
+
+      <div class="section-header">
+        <h2 class="section-label">CAPTURE PREVIEW</h2>
+        <button class="ghost-btn" id="recaptureBtn" title="Start over">New Capture</button>
+      </div>
+
+      <div class="indicator" id="qualityIndicator">
+        <span class="indicator-icon" id="indicatorLight">✓</span>
+        <span class="indicator-text" id="indicatorText">Capture complete</span>
+      </div>
+
+      <div class="capture-mode-tiles">
+        <div class="mode-tile active" id="modeTileFullRender">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+            <line x1="9" y1="21" x2="9" y2="9"/>
+          </svg>
+          <div class="mode-tile-text">
+            <span class="mode-tile-label">Full Render</span>
+            <span class="mode-tile-desc">Entire page content</span>
+          </div>
+        </div>
+        <div class="mode-tile" id="modeTileHighlighted">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+          <div class="mode-tile-text">
+            <span class="mode-tile-label">Highlighted Text</span>
+            <span class="mode-tile-desc">Selected text only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="metadata-grid">
+        <div class="meta-row"><span class="meta-label">TITLE</span><span class="meta-value" id="previewTitle">—</span></div>
+        <div class="meta-row"><span class="meta-label">URL</span><span class="meta-value meta-url" id="previewUrl" title="">—</span></div>
+        <div class="meta-row"><span class="meta-label">CAPTURED</span><span class="meta-value" id="previewTimestamp">—</span></div>
+        <div class="meta-row"><span class="meta-label">MODE</span><span class="meta-value" id="previewMode">—</span></div>
+        <div class="meta-row"><span class="meta-label">PLATFORM</span><span class="meta-value" id="previewPlatform">—</span></div>
+        <div class="meta-row"><span class="meta-label">WORDS</span><span class="meta-value" id="previewWords">0</span></div>
+        <div class="meta-row"><span class="meta-label">CHARACTERS</span><span class="meta-value" id="previewChars">0</span></div>
+        <div class="meta-row"><span class="meta-label">BROWSER</span><span class="meta-value" id="previewBrowser">—</span></div>
+        <div class="meta-row"><span class="meta-label">ENGINE</span><span class="meta-value" id="previewEngine">—</span></div>
+      </div>
+
+      <div class="private-warning hidden" id="privateWarning">
+        <span class="pw-icon">⚠</span>
+        <div class="pw-text">
+          <strong>Private or logged-in indicators detected.</strong>
+          <span>Review before sharing.</span>
+        </div>
+      </div>
+
+      <div class="quality-warning hidden" id="qualityWarning"></div>
+      <div class="selection-note hidden" id="selectionNote"></div>
+
+      <h3 class="content-heading">CAPTURED CONTENT (PREVIEW)</h3>
+      <pre class="content-preview" id="previewContent">No content captured yet.</pre>
+
+      <div class="export-actions">
+        <button class="action-btn primary full-width" id="copyMarkdownBtn">Copy Markdown</button>
+        <div class="export-row">
+          <button class="action-btn secondary" id="downloadMarkdownBtn">
+            <span class="btn-icon-inline">↓</span> Download .md
+          </button>
+          <button class="action-btn secondary" id="copyPlainBtn">
+            <span class="btn-icon-inline">📋</span> Copy Plain Text
+          </button>
+        </div>
+        <button class="action-btn danger full-width" id="clearBtn">
+          <span class="btn-icon-inline">🗑</span> Clear / Reset
+        </button>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <span class="footer-version">BrowserBeast v1.0</span>
+      <span class="footer-by">
+        by Stormcrow ·
+        <a href="https://aiunderground.com" target="_blank" rel="noopener">AIUnderground</a>
+      </span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

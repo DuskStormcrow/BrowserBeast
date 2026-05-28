@@ -1,0 +1,15 @@
+# Local packaging artifacts
+*.zip
+*.crx
+*.pem
+
+# Browser/user capture outputs
+/BrowserBeast_*_FullRender_*.md
+/BrowserBeast_*_HighlightedText_*.md
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

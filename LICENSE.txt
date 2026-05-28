@@ -1,0 +1,15 @@
+BrowserBeast v1.0 Freeware License
+
+Copyright (c) 2026 Stormcrow / AIUnderground.com. All rights reserved.
+
+BrowserBeast is provided as freeware. You may install and use BrowserBeast free of charge for personal, research, educational, creative, and professional use.
+
+You may not sell, repackage, redistribute, modify, reverse engineer, or claim BrowserBeast as your own without written permission from the copyright holder.
+
+BrowserBeast is provided "as is," without warranties of any kind. The author is not responsible for data loss, capture errors, browser changes, platform incompatibilities, or any consequences arising from use of the software.
+
+BrowserBeast is a user-triggered capture tool. Users are responsible for reviewing captured content before saving, publishing, sharing, uploading, or sending it to any third party or AI system.
+
+BrowserBeast, BrowserBeast(TM), AIUnderground, AIUnderground(TM), and related names, marks, branding, icons, and product identities are the property of their respective owner.
+
+For updates and information, visit AIUnderground.com.
