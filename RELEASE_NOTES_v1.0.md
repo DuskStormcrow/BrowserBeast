@@ -7,6 +7,8 @@ users, researchers, writers, builders, and digital archivists.
 
 BrowserBeast™ is the first public release in the AI Underground TechBeast™ Data Capture Suite.
 
+Brand mark: BrowserBeast™ uses the shared TechBeast™ beast-monitor logo family for README/release branding. Product-specific logo variants are a future option.
+
 Milestone:
 
 Spike EE-001 + VC-001 Closed: BrowserBeast™ Markdown-First Release Ready

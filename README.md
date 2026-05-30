@@ -1,5 +1,7 @@
 # BrowserBeast™ v1.0 Freeware
 
+![TechBeast™ Data Capture Suite shared beast-monitor mark](docs/assets/techbeast-suite-mark-widescreen.jpg)
+
 Capture. Export. Enjoy.
 
 BrowserBeast™ is a free Chrome-compatible browser extension for turning web pages,
@@ -7,6 +9,8 @@ AI chats, research pages, documentation, and selected text into clean Markdown o
 plain text artifacts.
 
 BrowserBeast™ is the browser/web capture tool in the AI Underground TechBeast™ Data Capture Suite. AI Underground is the publisher and home base; TechBeast™ Suite is the software family that also includes DesktopBeast™ and ArchiveBeast™.
+
+The beast-monitor mark shown above is the shared TechBeast™ Data Capture Suite logo family used across BrowserBeast™, DesktopBeast™, ArchiveBeast™, and suite materials. Product-specific variants may be created later; BrowserBeast™ v1.0 Freeware currently uses the shared suite mark for README/release branding.
 
 Official site path, once deployed: `https://ai-underground.ai/browserbeast/`
 
