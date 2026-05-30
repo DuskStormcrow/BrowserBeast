@@ -1,11 +1,13 @@
-# BrowserBeast v1.0 Privacy And Limitations
+# BrowserBeast™ v1.0 Privacy And Limitations
 
 ## Privacy Posture
 
-BrowserBeast is a user-triggered capture/export tool.
+BrowserBeast™ is a user-triggered capture/export tool.
 
-BrowserBeast does not require an account, does not use a cloud service, and does
-not intentionally transmit captured page content to AIUnderground or any external
+BrowserBeast™ is part of the AI Underground TechBeast™ Data Capture Suite.
+
+BrowserBeast™ does not require an account, does not use a cloud service, and does
+not intentionally transmit captured page content to AI Underground or any external
 server as part of its normal workflow.
 
 Capture runs when the user chooses to capture the current page or highlighted
@@ -13,7 +15,7 @@ text.
 
 ## Permissions
 
-BrowserBeast v1.0 requests:
+BrowserBeast™ v1.0 requests:
 
 ```json
 "permissions": [
@@ -25,12 +27,12 @@ BrowserBeast v1.0 requests:
 ]
 ```
 
-These permissions allow BrowserBeast to capture the page the user chooses. The
+These permissions allow BrowserBeast™ to capture the page the user chooses. The
 extension is not designed to silently monitor pages in the background.
 
 ## What May Be Captured
 
-Depending on capture mode and page content, BrowserBeast may capture:
+Depending on capture mode and page content, BrowserBeast™ may capture:
 
 - Rendered page text.
 - User-highlighted text.
@@ -45,8 +47,11 @@ Depending on capture mode and page content, BrowserBeast may capture:
 
 ## Review Before Sharing
 
-BrowserBeast can capture private, logged-in, account, workspace, chat, dashboard,
+BrowserBeast™ can capture private, logged-in, account, workspace, chat, dashboard,
 or internal-tool content if the user chooses to capture that page.
+
+Review captures before sharing. BrowserBeast™ may preserve private/logged-in
+indicators or page content visible at capture time.
 
 Private-page warnings are advisory only. Users are responsible for reviewing
 exports before sharing, publishing, uploading, emailing, or sending them to an AI
@@ -62,7 +67,7 @@ system.
 - Dynamic pages may need to finish loading before capture.
 - Noisy web pages may include menus, navigation, banners, or unrelated text.
 - Privacy warnings are advisory and may miss sensitive content.
-- BrowserBeast v1.0 does not capture PNG visual companions.
+- BrowserBeast™ v1.0 does not capture PNG visual companions.
 
 ## Evidence Envelope
 

@@ -1,13 +1,15 @@
-# BrowserBeast v1.0 Freeware Release Notes
+# BrowserBeast™ v1.0 Freeware Release Notes
 
 ## Release Summary
 
-BrowserBeast v1.0 is a free Markdown-first browser capture extension for AI
+BrowserBeast™ v1.0 Freeware is a free Markdown-first browser capture extension for AI
 users, researchers, writers, builders, and digital archivists.
+
+BrowserBeast™ is the first public release in the AI Underground TechBeast™ Data Capture Suite.
 
 Milestone:
 
-Spike EE-001 + VC-001 Closed: BrowserBeast Markdown-First Release Ready
+Spike EE-001 + VC-001 Closed: BrowserBeast™ Markdown-First Release Ready
 
 ## Included In v1.0
 
@@ -23,7 +25,7 @@ Spike EE-001 + VC-001 Closed: BrowserBeast Markdown-First Release Ready
 
 ## Evidence Envelope v0.1
 
-BrowserBeast v1.0 emits `evidence_envelope_version: "0.1"` in Markdown exports.
+BrowserBeast™ v1.0 emits `evidence_envelope_version: "0.1"` in Markdown exports.
 
 The envelope records artifact, source, content, privacy, validation, optional
 identity, and link metadata.
@@ -38,7 +40,7 @@ Markdown remains the source-of-truth artifact.
 
 ## Not Included
 
-- ArchiveBeast parsing.
+- ArchiveBeast™ parsing.
 - PersonaVault runtime work.
 - Hash chains.
 - Embeddings.
@@ -49,5 +51,5 @@ Markdown remains the source-of-truth artifact.
 
 ## Release Posture
 
-BrowserBeast v1.0 is public freeware release-ready as a Markdown-first extension
+BrowserBeast™ v1.0 Freeware is public release-ready as a Markdown-first extension
 with Evidence Envelope v0.1 structured metadata.
