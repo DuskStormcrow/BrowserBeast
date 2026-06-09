@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "BrowserBeast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Capture web pages, AI chats, research pages, and highlighted text as clean Markdown or plain text.",
-  "author": "Stormcrow / AIUnderground.com",
+  "author": "Stormcrow / AI Underground",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",

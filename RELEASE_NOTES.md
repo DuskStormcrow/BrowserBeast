@@ -1,3 +1,3 @@
-# BrowserBeast v1.0 Freeware Release Notes
+# BrowserBeast™ v1.0.1 Freeware Release Notes
 
-See `RELEASE_NOTES_v1.0.md`.
+See `RELEASE_NOTES_v1.0.1.md`.

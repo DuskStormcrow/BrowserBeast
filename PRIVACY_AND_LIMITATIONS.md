@@ -1,10 +1,8 @@
-# BrowserBeast™ v1.0 Privacy And Limitations
+# BrowserBeast™ v1.0.1 Privacy And Limitations
 
 ## Privacy Posture
 
 BrowserBeast™ is a user-triggered capture/export tool.
-
-BrowserBeast™ is part of the AI Underground TechBeast™ Data Capture Suite.
 
 BrowserBeast™ does not require an account, does not use a cloud service, and does
 not intentionally transmit captured page content to AI Underground or any external
@@ -15,7 +13,7 @@ text.
 
 ## Permissions
 
-BrowserBeast™ v1.0 requests:
+BrowserBeast™ v1.0.1 requests:
 
 ```json
 "permissions": [
@@ -27,12 +25,12 @@ BrowserBeast™ v1.0 requests:
 ]
 ```
 
-These permissions allow BrowserBeast™ to capture the page the user chooses. The
+These permissions allow BrowserBeast to capture the page the user chooses. The
 extension is not designed to silently monitor pages in the background.
 
 ## What May Be Captured
 
-Depending on capture mode and page content, BrowserBeast™ may capture:
+Depending on capture mode and page content, BrowserBeast may capture:
 
 - Rendered page text.
 - User-highlighted text.
@@ -41,6 +39,8 @@ Depending on capture mode and page content, BrowserBeast™ may capture:
 - Capture timestamp.
 - Word count.
 - Capture mode.
+- Captured Markdown shown in a local Full Review tab when the user chooses that
+  action.
 - Browser and engine metadata.
 - Detected platform name.
 - Private/logged-in advisory signals.
@@ -67,7 +67,8 @@ system.
 - Dynamic pages may need to finish loading before capture.
 - Noisy web pages may include menus, navigation, banners, or unrelated text.
 - Privacy warnings are advisory and may miss sensitive content.
-- BrowserBeast™ v1.0 does not capture PNG visual companions.
+- BrowserBeast™ v1.0.1 does not capture PNG visual companions.
+- BrowserBeast does not automatically sync captures into ArchiveBeast yet.
 
 ## Evidence Envelope
 

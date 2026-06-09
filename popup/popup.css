@@ -1,5 +1,5 @@
 /* ====================================================================
-   BrowserBeast v1.0 — Popup Styling
+   BrowserBeast v1.0.1 — Popup Styling
    Blue / Steel / Black — Browser Capture Engine
    ==================================================================== */
 
@@ -587,6 +587,18 @@ body {
 .action-btn.primary:hover {
   filter: brightness(1.1);
   box-shadow: 0 4px 16px var(--beast-blue-glow);
+}
+
+.action-btn.review {
+  border-color: rgba(56, 189, 248, 0.42);
+  background: rgba(14, 165, 233, 0.1);
+  color: #E0F2FE;
+}
+
+.action-btn.review:hover {
+  border-color: var(--beast-blue-light);
+  background: rgba(14, 165, 233, 0.16);
+  box-shadow: 0 3px 12px rgba(14, 165, 233, 0.18);
 }
 
 .action-btn.secondary {

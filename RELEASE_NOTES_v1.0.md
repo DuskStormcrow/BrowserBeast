@@ -1,22 +1,20 @@
-# BrowserBeast™ v1.0 Freeware Release Notes
+# BrowserBeast™ v1.0.1 Freeware Release Notes
 
 ## Release Summary
 
-BrowserBeast™ v1.0 Freeware is a free Markdown-first browser capture extension for AI
+BrowserBeast™ v1.0.1 Freeware is a free Markdown-first browser capture extension for AI
 users, researchers, writers, builders, and digital archivists.
 
-BrowserBeast™ is the first public release in the AI Underground TechBeast™ Data Capture Suite.
+Refresh milestone:
 
-Brand mark: BrowserBeast™ uses the shared TechBeast™ beast-monitor logo family for README/release branding. Product-specific logo variants are a future option.
+BrowserBeast v1.0.1 adds optional Full Review for the DesktopBeast companion
+bundle while preserving v1.0 freeware capture/export behavior.
 
-Milestone:
-
-Spike EE-001 + VC-001 Closed: BrowserBeast™ Markdown-First Release Ready
-
-## Included In v1.0
+## Included In v1.0.1
 
 - Full Render capture mode.
 - Highlighted Text capture mode.
+- Optional Open Full Review action for a larger local review tab.
 - Markdown export.
 - Plain text export.
 - Human-readable metadata header.
@@ -27,14 +25,14 @@ Spike EE-001 + VC-001 Closed: BrowserBeast™ Markdown-First Release Ready
 
 ## Evidence Envelope v0.1
 
-BrowserBeast™ v1.0 emits `evidence_envelope_version: "0.1"` in Markdown exports.
+BrowserBeast™ v1.0.1 emits `evidence_envelope_version: "0.1"` in Markdown exports.
 
 The envelope records artifact, source, content, privacy, validation, optional
 identity, and link metadata.
 
 Markdown remains the source-of-truth artifact.
 
-## Deferred To v1.1
+## Deferred
 
 - Optional PNG Visual Companion capture.
 - Visible viewport screenshot companion files.
@@ -42,7 +40,7 @@ Markdown remains the source-of-truth artifact.
 
 ## Not Included
 
-- ArchiveBeast™ parsing.
+- Automatic ArchiveBeast parsing or sync.
 - PersonaVault runtime work.
 - Hash chains.
 - Embeddings.
@@ -50,8 +48,18 @@ Markdown remains the source-of-truth artifact.
 - Identity runtime logic.
 - Background auto-capture.
 - Cloud sync or account system.
+- Automatic ArchiveBeast sync.
+
+## DesktopBeast Companion Notes
+
+BrowserBeast captures browser/web artifacts. DesktopBeast captures
+desktop/application/window artifacts. BrowserBeast is included as a companion
+extension inside the DesktopBeast ZIP and is loaded separately through Chrome or a
+Chromium-based browser. ArchiveBeast Library can review BrowserBeast Markdown
+captures when the Browser shelf is pointed at the folder containing those
+captures.
 
 ## Release Posture
 
-BrowserBeast™ v1.0 Freeware is public release-ready as a Markdown-first extension
-with Evidence Envelope v0.1 structured metadata.
+BrowserBeast™ v1.0.1 Freeware is ready for the DesktopBeast v1.0 EA RC2 bundle as
+a Markdown-first extension with Evidence Envelope v0.1 structured metadata.

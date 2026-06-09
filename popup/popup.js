@@ -1,5 +1,5 @@
 /**
- * BrowserBeast v1.0 — Popup Script
+ * BrowserBeast v1.0.1 — Popup Script
  * Two modes: Full Render | Highlighted Text
  * Flow: Capture → Preview → Export (Markdown/Plain Text)
  */
@@ -10,6 +10,7 @@ const CAPTURE_MODE_LABELS = {
 };
 
 const COPY_SUCCESS_MS = 1500;
+const BROWSERBEAST_VERSION_LABEL = 'BrowserBeast v1.0.1';
 
 const $ = id => document.getElementById(id);
 
@@ -21,6 +22,7 @@ const btnHighlightedText = $('btnHighlightedText');
 const selectionHint      = $('selectionHint');
 const recaptureBtn       = $('recaptureBtn');
 const copyMarkdownBtn    = $('copyMarkdownBtn');
+const openFullReviewBtn  = $('openFullReviewBtn');
 const downloadMarkdownBtn = $('downloadMarkdownBtn');
 const copyPlainBtn       = $('copyPlainBtn');
 const clearBtn           = $('clearBtn');
@@ -117,6 +119,7 @@ function wireEvents() {
   btnHighlightedText.addEventListener('click', () => onCapture('highlighted_text'));
   recaptureBtn.addEventListener('click', onNewCapture);
   copyMarkdownBtn.addEventListener('click', onCopyMarkdown);
+  openFullReviewBtn.addEventListener('click', onOpenFullReview);
   downloadMarkdownBtn.addEventListener('click', onDownloadMarkdown);
   copyPlainBtn.addEventListener('click', onCopyPlainText);
   clearBtn.addEventListener('click', onClear);
@@ -186,7 +189,7 @@ async function onCapture(mode) {
     captured = res.content;
     // Attach browser/engine metadata
     captured.browser = browserName;
-    captured.engine = 'BrowserBeast v1.0';
+    captured.engine = BROWSERBEAST_VERSION_LABEL;
     captured.renderEngine = engineName;
 
     showPreview();
@@ -231,7 +234,7 @@ function showPreview() {
   previewWords.textContent = formatNumber(captured.wordCount || 0);
   previewChars.textContent = formatNumber(captured.characterCount || 0);
   previewBrowser.textContent = captured.browser || browserName;
-  previewEngine.textContent = captured.engine || 'BrowserBeast v1.0';
+  previewEngine.textContent = captured.engine || BROWSERBEAST_VERSION_LABEL;
   previewContent.textContent = text || '[No text captured]';
 
   // Update mode tiles
@@ -316,14 +319,91 @@ function yamlArrayField(name, values = []) {
   ].join('\n');
 }
 
+function getArtifactId() {
+  return captured?.artifactId || captured?.captureId || '';
+}
+
+function getCaptureScope() {
+  if (captured?.captureScope) return captured.captureScope;
+  return captured?.captureMode === 'highlighted_text' || captured?.isSelection ? 'selection' : 'full_render';
+}
+
+function buildCaptureSummaryText(details) {
+  const privacySignals = Array.isArray(details.privacySignals) && details.privacySignals.length
+    ? details.privacySignals.join(', ')
+    : 'none';
+
+  return [
+    'BROWSERBEAST CAPTURE SUMMARY',
+    `Artifact ID: ${details.artifactId || 'legacy-unassigned'}`,
+    `Title: ${details.title || 'Untitled Page'}`,
+    `Source: ${details.sourceUrl || ''}`,
+    `Captured: ${details.capturedAtText || ''}`,
+    `Mode: ${details.captureModeLabel || ''}`,
+    `Words: ${formatNumber(details.wordCount || 0)}`,
+    `Privacy Signals: ${privacySignals}`,
+    `Engine: ${details.toolVersion || BROWSERBEAST_VERSION_LABEL}`
+  ].join('\n');
+}
+
+function getCaptureDetails() {
+  if (!captured) return null;
+
+  const title = captured.sourceTitle || captured.title || 'Untitled Page';
+  const url = captured.sourceUrl || captured.url || '';
+  const timestampIso = captured.capturedAt || new Date().toISOString();
+  const timestampText = new Date(timestampIso).toLocaleString();
+  const text = captured.capturedText || '';
+  const wordCount = captured.wordCount || (text.match(/\S+/g) || []).length;
+  const modeLabel = captured.captureModeLabel || CAPTURE_MODE_LABELS[captured.captureMode] || 'Unknown';
+  const platform = captured.detectedPlatform || 'Unknown';
+  const privacySignals = captured.appearsPrivate ? (captured.privateSignals || []).slice(0, 4) : [];
+  const toolVersion = captured.engine || BROWSERBEAST_VERSION_LABEL;
+
+  return {
+    artifactId: getArtifactId(),
+    title,
+    sourceUrl: url,
+    capturedAtIso: timestampIso,
+    capturedAtText: timestampText,
+    text,
+    wordCount,
+    modeLabel,
+    platform,
+    captureStatus: captured.truncated ? 'partial' : 'success',
+    privacySignals,
+    privacyScanStatus: 'completed',
+    redactionPolicy: captured.appearsPrivate ? 'advisory' : 'none',
+    captureScope: getCaptureScope(),
+    selectionMode: captured.captureMode === 'highlighted_text' || captured.isSelection ? 'highlighted_text' : '',
+    toolVersion
+  };
+}
+
 function buildEvidenceEnvelopeMarkdown(details) {
   const privacySignals = Array.isArray(details.privacySignals) ? details.privacySignals : [];
   const linkedArtifacts = Array.isArray(details.linkedArtifacts) ? details.linkedArtifacts : [];
   const tags = Array.isArray(details.tags) ? details.tags : [];
+  const contentFields = [
+    `  primary_format: ${yamlScalar(details.primaryFormat || 'markdown')}`,
+    `  capture_scope: ${yamlScalar(details.captureScope || '')}`
+  ];
+
+  if (details.selectionMode) {
+    contentFields.push(`  selection_mode: ${yamlScalar(details.selectionMode)}`);
+  }
+
+  contentFields.push(
+    `  content_path: ${yamlScalar(details.contentPath || '')}`,
+    yamlArrayField('companion_files', details.companionFiles || []),
+    `  word_count: ${yamlNumber(details.wordCount)}`,
+    `  ocr_status: ${yamlScalar(details.ocrStatus || '')}`,
+    `  ocr_confidence: ${yamlNumber(details.ocrConfidence)}`
+  );
 
   return [
     '```evidence-envelope',
-    'evidence_envelope_version: "0.1"',
+    'evidence_envelope_version: "0.2"',
     '',
     'artifact:',
     `  artifact_id: ${yamlScalar(details.artifactId || '')}`,
@@ -342,17 +422,13 @@ function buildEvidenceEnvelopeMarkdown(details) {
     `  capture_mode: ${yamlScalar(details.captureMode || '')}`,
     '',
     'content:',
-    `  primary_format: ${yamlScalar(details.primaryFormat || 'markdown')}`,
-    `  content_path: ${yamlScalar(details.contentPath || '')}`,
-    yamlArrayField('companion_files', details.companionFiles || []),
-    `  word_count: ${yamlNumber(details.wordCount)}`,
-    `  ocr_status: ${yamlScalar(details.ocrStatus || '')}`,
-    `  ocr_confidence: ${yamlNumber(details.ocrConfidence)}`,
+    ...contentFields,
     '',
     'privacy:',
     `  privacy_scan_status: ${yamlScalar(details.privacyScanStatus || '')}`,
     yamlArrayField('privacy_signals', privacySignals),
     `  redaction_policy: ${yamlScalar(details.redactionPolicy || '')}`,
+    `  review_before_sharing: ${details.reviewBeforeSharing ? 'true' : 'false'}`,
     '',
     'validation:',
     `  validation_status: ${yamlScalar(details.validationStatus || 'unreviewed')}`,
@@ -366,6 +442,12 @@ function buildEvidenceEnvelopeMarkdown(details) {
     `  host_model: ${yamlScalar(details.hostModel || '')}`,
     `  role_in_artifact: ${yamlScalar(details.roleInArtifact || 'unknown')}`,
     '',
+    'integrity:',
+    `  canonical_markdown_sha256: ${yamlScalar(details.canonicalMarkdownSha256 || '')}`,
+    `  canonical_plain_text_sha256: ${yamlScalar(details.canonicalPlainTextSha256 || '')}`,
+    `  evidence_envelope_sha256: ${yamlScalar(details.evidenceEnvelopeSha256 || '')}`,
+    `  generated_at: ${yamlScalar(details.integrityGeneratedAt || '')}`,
+    '',
     'links:',
     `  parent_artifact_id: ${yamlScalar(details.parentArtifactId || '')}`,
     yamlArrayField('linked_artifacts', linkedArtifacts),
@@ -378,29 +460,19 @@ function buildEvidenceEnvelopeMarkdown(details) {
 function buildMarkdown() {
   if (!captured) return '';
 
-  const title = captured.sourceTitle || captured.title || 'Untitled Page';
-  const url = captured.sourceUrl || captured.url || '';
-  const timestampIso = captured.capturedAt || new Date().toISOString();
-  const timestampText = new Date(timestampIso).toLocaleString();
-  const text = captured.capturedText || '';
-  const wordCount = captured.wordCount || (text.match(/\S+/g) || []).length;
-  const modeLabel = captured.captureModeLabel || CAPTURE_MODE_LABELS[captured.captureMode] || 'Unknown';
-  const platform = captured.detectedPlatform || 'Unknown';
-  const captureStatus = captured.truncated ? 'partial' : 'success';
-  const privacySignals = captured.appearsPrivate ? (captured.privateSignals || []).slice(0, 4) : [];
-  const privacyScanStatus = captured.appearsPrivate ? 'completed' : 'completed';
-  const redactionPolicy = captured.appearsPrivate ? 'advisory' : 'none';
+  const details = getCaptureDetails();
 
   const headerLines = [
-    `# ${title}`,
+    `# ${details.title}`,
     '',
-    `🔗 Source: ${url}`,
-    `⏰ Captured: ${timestampText}`,
-    `📊 Word Count: ${formatNumber(wordCount)}`,
-    `🧭 Capture Mode: ${modeLabel}`,
-    `🧩 Platform: ${platform}`,
+    `Artifact ID: ${details.artifactId}`,
+    `🔗 Source: ${details.sourceUrl}`,
+    `⏰ Captured: ${details.capturedAtText}`,
+    `📊 Word Count: ${formatNumber(details.wordCount)}`,
+    `🧭 Capture Mode: ${details.modeLabel}`,
+    `🧩 Platform: ${details.platform}`,
     `🌐 Browser: ${captured.browser || browserName}`,
-    `⚙️ Engine: ${captured.engine || 'BrowserBeast v1.0'}`
+    `⚙️ Engine: ${details.toolVersion}`
   ];
 
   // Selection note
@@ -421,7 +493,7 @@ function buildMarkdown() {
 
   // Privacy warning in export
   if (captured.appearsPrivate) {
-    const signals = (captured.privateSignals || []).slice(0, 4);
+    const signals = details.privacySignals;
     const signalText = signals.length ? ` Signals: ${signals.join(', ')}.` : '';
     if (captured.isSelection) {
       headerLines.push('', `⛔ Private page context detected.${signalText} Review before sharing. The selected text may be clean, but the source page appeared to be a logged-in/private environment.`);
@@ -431,42 +503,49 @@ function buildMarkdown() {
   }
 
   headerLines.push('', buildEvidenceEnvelopeMarkdown({
-    artifactId: captured.captureId || '',
+    artifactId: details.artifactId,
     artifactType: 'browser_capture',
-    createdAt: timestampIso,
+    createdAt: details.capturedAtIso,
     createdByTool: 'BrowserBeast',
-    toolVersion: captured.engine || 'BrowserBeast v1.0',
-    captureStatus,
+    toolVersion: details.toolVersion,
+    captureStatus: details.captureStatus,
     sourceType: 'browser',
-    sourcePlatform: platform,
-    sourceUrl: url,
+    sourcePlatform: details.platform,
+    sourceUrl: details.sourceUrl,
     sourceApp: captured.browser || browserName,
-    windowTitle: title,
-    captureMode: modeLabel,
+    windowTitle: details.title,
+    captureMode: details.modeLabel,
     primaryFormat: 'markdown',
+    captureScope: details.captureScope,
+    selectionMode: details.selectionMode,
     contentPath: '',
     companionFiles: [],
-    wordCount,
+    wordCount: details.wordCount,
     ocrStatus: '',
     ocrConfidence: null,
-    privacyScanStatus,
-    privacySignals,
-    redactionPolicy,
+    privacyScanStatus: details.privacyScanStatus,
+    privacySignals: details.privacySignals,
+    redactionPolicy: details.redactionPolicy,
+    reviewBeforeSharing: true,
     validationStatus: 'unreviewed',
     validationNotes: '',
     associatedIdentityId: '',
     associatedIdentityName: '',
     identityVersion: '',
-    hostPlatform: platform,
+    hostPlatform: details.platform,
     hostModel: '',
     roleInArtifact: 'unknown',
+    canonicalMarkdownSha256: '',
+    canonicalPlainTextSha256: '',
+    evidenceEnvelopeSha256: '',
+    integrityGeneratedAt: '',
     parentArtifactId: '',
     linkedArtifacts: [],
     project: '',
     tags: []
   }));
 
-  headerLines.push('', '---', '', '## Captured Content', '', text);
+  headerLines.push('', '---', '', '## Captured Content', '', details.text);
 
   return headerLines.join('\n');
 }
@@ -487,6 +566,7 @@ function buildPlainText() {
   const platform = captured.detectedPlatform || 'Unknown';
 
   const lines = [
+    `Artifact ID: ${getArtifactId()}`,
     `Title: ${title}`,
     `URL: ${url}`,
     `Captured: ${timestampText}`,
@@ -495,7 +575,7 @@ function buildPlainText() {
     `Words: ${formatNumber(wordCount)}`,
     `Characters: ${formatNumber(captured.characterCount || 0)}`,
     `Browser: ${captured.browser || browserName}`,
-    `Engine: ${captured.engine || 'BrowserBeast v1.0'}`
+    `Engine: ${captured.engine || BROWSERBEAST_VERSION_LABEL}`
   ];
 
   // Warnings
@@ -539,6 +619,98 @@ async function onCopyPlainText() {
   if (copied) triggerCopySuccessFeedback(copyPlainBtn);
 }
 
+async function onOpenFullReview() {
+  if (!captured) { setStatus('Capture first before opening full review.', 'error'); return; }
+
+  const markdown = buildMarkdown();
+  const details = getCaptureDetails();
+  const summary = buildCaptureSummaryText({
+    artifactId: details.artifactId,
+    title: details.title,
+    sourceUrl: details.sourceUrl,
+    capturedAtText: details.capturedAtText,
+    captureModeLabel: details.modeLabel,
+    wordCount: details.wordCount,
+    privacySignals: details.privacySignals,
+    toolVersion: details.toolVersion
+  });
+  const title = captured.sourceTitle || captured.title || 'BrowserBeast Full Review';
+  const reviewHtml = buildFullReviewHtml(title, markdown, summary);
+  const blob = new Blob([reviewHtml], { type: 'text/html;charset=utf-8' });
+  const blobUrl = URL.createObjectURL(blob);
+  let opened = await openReviewUrl(blobUrl, {
+    useAnchorFallback: false,
+    useExtensionApi: false
+  });
+
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+
+  if (!opened) {
+    opened = await openStoredReviewPage(title, markdown, summary);
+  }
+
+  setStatus(opened ? 'Opened full review tab.' : 'Full review was blocked by the browser.', opened ? 'ready' : 'error');
+}
+
+function openReviewUrl(url, options = {}) {
+  return new Promise(resolve => {
+    const extensionApi = globalThis.chrome;
+    if (options.useExtensionApi !== false && extensionApi?.tabs?.create) {
+      try {
+        extensionApi.tabs.create({ url, active: true }, () => {
+          resolve(!extensionApi.runtime.lastError);
+        });
+        return;
+      } catch (_) {
+        // Fall through to window/open anchor path.
+      }
+    }
+
+    resolve(openReviewUrlWithWindow(url, options));
+  });
+}
+
+function openReviewUrlWithWindow(url, options = {}) {
+  let opened = false;
+  const reviewWindow = window.open(url, '_blank', 'noopener');
+
+  if (reviewWindow) {
+    opened = true;
+  } else if (options.useAnchorFallback !== false) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    opened = true;
+  }
+
+  return opened;
+}
+
+async function openStoredReviewPage(title, markdown, summary) {
+  try {
+    const reviewId = `browserbeast-review-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const reviewKey = `BrowserBeastFullReview:${reviewId}`;
+    const payload = JSON.stringify({
+      title,
+      markdown,
+      summary,
+      createdAt: new Date().toISOString()
+    });
+
+    localStorage.setItem(reviewKey, payload);
+    setTimeout(() => localStorage.removeItem(reviewKey), 10 * 60 * 1000);
+
+    const reviewUrl = chrome.runtime.getURL(`review/review.html#key=${encodeURIComponent(reviewKey)}`);
+    return await openReviewUrl(reviewUrl);
+  } catch (_) {
+    return false;
+  }
+}
+
 function onDownloadMarkdown() {
   if (!captured) { setStatus('Capture first before downloading.', 'error'); return; }
 
@@ -556,7 +728,8 @@ function onDownloadMarkdown() {
     + '-' + String(now.getMinutes()).padStart(2, '0')
     + '-' + String(now.getSeconds()).padStart(2, '0');
 
-  const filename = `BrowserBeast_${platform}_${modeSlug}_${datePart}_${timePart}.md`;
+  const filenamePrefix = getArtifactId() || `BrowserBeast_${platform}_${modeSlug}_${datePart}_${timePart}`;
+  const filename = `${filenamePrefix}.md`;
 
   const a = document.createElement('a');
   a.href = blobUrl;
@@ -663,6 +836,97 @@ function triggerCopySuccessFeedback(button) {
   copyFeedbackTimers.set(button, timer);
 }
 
+function buildFullReviewHtml(title, markdown, summary = '') {
+  const safeTitle = escapeHtml(title || 'BrowserBeast Full Review');
+  const safeMarkdown = escapeHtml(markdown || '');
+  const safeSummary = escapeHtml(summary || '');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline';">
+  <title>${safeTitle} - BrowserBeast Full Review</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0C0F14;
+      color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      padding: 18px 28px;
+      border-bottom: 1px solid rgba(14, 165, 233, 0.28);
+      background: #111820;
+      z-index: 1;
+    }
+    h1 {
+      margin: 0;
+      color: #38BDF8;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+    .subhead {
+      margin-top: 6px;
+      color: #94A3B8;
+      font-size: 13px;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 28px 44px;
+    }
+    .summary-card {
+      margin: 0 0 18px;
+      padding: 18px 20px;
+      border: 2px solid #38BDF8;
+      border-radius: 6px;
+      background: #F8FAFC;
+      color: #0F172A;
+      font: 15px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    pre {
+      margin: 0;
+      padding: 20px;
+      min-height: 70vh;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      background: #0A0D12;
+      color: #D8E3F0;
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BrowserBeast Full Review</h1>
+    <div class="subhead">${safeTitle} · ${BROWSERBEAST_VERSION_LABEL}</div>
+  </header>
+  <main>
+    <section class="summary-card">${safeSummary}</section>
+    <pre>${safeMarkdown}</pre>
+  </main>
+</body>
+</html>`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function sanitizeSlug(value) {
   return (value || 'Unknown')
     .replace(/[^a-zA-Z0-9]+/g, '')
@@ -680,4 +944,4 @@ function setStatus(text, kind = 'ready') {
   if (kind === 'error') statusDot.classList.add('error');
 }
 
-console.log('[BrowserBeast/popup] v1.0.0 ready');
+console.log('[BrowserBeast/popup] v1.0.1 ready');

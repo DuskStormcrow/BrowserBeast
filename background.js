@@ -1,5 +1,5 @@
 /**
- * BrowserBeast v1.0 — Background Service Worker
+ * BrowserBeast v1.0.1 — Background Service Worker
  * ----------------------------------------------------------------------
  * Two capture modes only:
  *   1. Full Render   — full rendered page text, minimal junk stripping
@@ -8,7 +8,7 @@
  * No injection, no platform tab scanning, no send-to-platform.
  * Pure capture → export.
  *
- * Stormcrow / AIUnderground.com
+ * Stormcrow / AI Underground
  * ----------------------------------------------------------------------
  */
 
@@ -33,6 +33,20 @@ const CAPTURE_MODE_LABELS = {
   full_render: 'Full Render',
   highlighted_text: 'Highlighted Text'
 };
+
+function generateArtifactId(date = new Date()) {
+  const pad = value => String(value).padStart(2, '0');
+  const datePart =
+    String(date.getFullYear())
+    + pad(date.getMonth() + 1)
+    + pad(date.getDate());
+  const timePart =
+    pad(date.getHours())
+    + pad(date.getMinutes())
+    + pad(date.getSeconds());
+  const suffix = Math.random().toString(36).replace(/[^a-z0-9]/g, '').slice(2, 8).padEnd(6, '0');
+  return `bb-${datePart}-${timePart}-${suffix}`;
+}
 
 function detectPlatformFromUrl(url = '') {
   for (const p of PLATFORM_DETECT) {
@@ -172,18 +186,26 @@ async function handleCapture(msg, sendResponse) {
 
     // Detect platform from URL
     const platform = detectPlatformFromUrl(tab.url || '');
+    const capturedAtDate = new Date();
+    const capturedAt = capturedAtDate.toISOString();
+    const artifactId = generateArtifactId(capturedAtDate);
 
     capturedContent = {
       ...captureResult,
+      artifactId,
+      captureId: artifactId,
       sourceUrl: tab.url,
       sourceTitle: tab.title,
-      capturedAt: new Date().toISOString(),
+      capturedAt,
       captureMode: mode,
       captureModeLabel: CAPTURE_MODE_LABELS[mode] || mode,
+      captureScope: mode === 'highlighted_text' ? 'selection' : 'full_render',
+      selectionMode: mode === 'highlighted_text' ? 'highlighted_text' : '',
       detectedPlatform: platform
     };
 
     console.log('[BrowserBeast/bg] captured', {
+      artifactId: capturedContent.artifactId,
       url: capturedContent.sourceUrl,
       mode: capturedContent.captureMode,
       platform: capturedContent.detectedPlatform,
@@ -435,4 +457,4 @@ function capturePageContent({ mode = 'full_render' } = {}) {
 // Startup
 // ---------------------------------------------------------------------
 clearCapturedContent('service worker startup');
-console.log('[BrowserBeast/bg] service worker initialized — v1.0.0');
+console.log('[BrowserBeast/bg] service worker initialized — v1.0.1');
