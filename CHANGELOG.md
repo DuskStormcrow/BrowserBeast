@@ -7,6 +7,7 @@
 - Optional Open Full Review action for captured content.
 - Local full-review Blob tab using escaped Markdown output.
 - DesktopBeast companion documentation.
+- Evidence Envelope v0.2 in Markdown exports.
 
 ### Preserved
 

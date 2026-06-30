@@ -342,7 +342,7 @@ function buildCaptureSummaryText(details) {
     `Mode: ${details.captureModeLabel || ''}`,
     `Words: ${formatNumber(details.wordCount || 0)}`,
     `Privacy Signals: ${privacySignals}`,
-    `Engine: ${details.toolVersion || BROWSERBEAST_VERSION_LABEL}`
+    `Tool: ${details.toolVersion || BROWSERBEAST_VERSION_LABEL}`
   ].join('\n');
 }
 
@@ -472,7 +472,7 @@ function buildMarkdown() {
     `🧭 Capture Mode: ${details.modeLabel}`,
     `🧩 Platform: ${details.platform}`,
     `🌐 Browser: ${captured.browser || browserName}`,
-    `⚙️ Engine: ${details.toolVersion}`
+    `⚙️ Tool: ${details.toolVersion}`
   ];
 
   // Selection note
@@ -575,7 +575,7 @@ function buildPlainText() {
     `Words: ${formatNumber(wordCount)}`,
     `Characters: ${formatNumber(captured.characterCount || 0)}`,
     `Browser: ${captured.browser || browserName}`,
-    `Engine: ${captured.engine || BROWSERBEAST_VERSION_LABEL}`
+    `Tool: ${captured.engine || BROWSERBEAST_VERSION_LABEL}`
   ];
 
   // Warnings

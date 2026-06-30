@@ -99,27 +99,6 @@ body {
   letter-spacing: 0.04em;
 }
 
-.header-share-btn {
-  background: none;
-  border: 1px solid var(--border-soft);
-  color: var(--text-dim);
-  border-radius: 6px;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 16px;
-  font-family: inherit;
-  transition: border-color 150ms, color 150ms;
-}
-
-.header-share-btn:hover {
-  border-color: var(--beast-blue);
-  color: var(--beast-blue);
-}
-
 /* --- Status strip --- */
 .status-strip {
   padding: 8px 18px;

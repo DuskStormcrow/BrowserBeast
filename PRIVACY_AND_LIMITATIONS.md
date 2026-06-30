@@ -72,6 +72,6 @@ system.
 
 ## Evidence Envelope
 
-Evidence Envelope v0.1 records privacy signals in structured metadata, but it
+Evidence Envelope v0.2 records privacy signals in structured metadata, but it
 does not redact content automatically and does not certify that a capture is safe
 to share.

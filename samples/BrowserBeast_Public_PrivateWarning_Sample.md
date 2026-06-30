@@ -6,12 +6,12 @@ Word Count: 9
 Capture Mode: Full Render
 Platform: Unknown
 Browser: Chrome 148.0.0.0
-Engine: BrowserBeast v1.0.1
+Tool: BrowserBeast v1.0.1
 
 Private/logged-in indicators detected. Signals: account, dashboard. Review before sharing.
 
 ```evidence-envelope
-evidence_envelope_version: "0.1"
+evidence_envelope_version: "0.2"
 
 artifact:
   artifact_id: ""

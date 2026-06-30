@@ -18,14 +18,14 @@ bundle while preserving v1.0 freeware capture/export behavior.
 - Markdown export.
 - Plain text export.
 - Human-readable metadata header.
-- Evidence Envelope v0.1 structured metadata in Markdown exports.
+- Evidence Envelope v0.2 structured metadata in Markdown exports.
 - Advisory privacy signal warnings.
 - Local, user-triggered workflow.
 - Chrome/Chromium unpacked-extension package.
 
-## Evidence Envelope v0.1
+## Evidence Envelope v0.2
 
-BrowserBeast™ v1.0.1 emits `evidence_envelope_version: "0.1"` in Markdown exports.
+BrowserBeast™ v1.0.1 emits `evidence_envelope_version: "0.2"` in Markdown exports.
 
 The envelope records artifact, source, content, privacy, validation, optional
 identity, and link metadata.
@@ -62,4 +62,4 @@ captures.
 ## Release Posture
 
 BrowserBeast™ v1.0.1 Freeware is ready for the DesktopBeast v1.0 EA RC2 bundle as
-a Markdown-first extension with Evidence Envelope v0.1 structured metadata.
+a Markdown-first extension with Evidence Envelope v0.2 structured metadata.

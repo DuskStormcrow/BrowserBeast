@@ -7,7 +7,7 @@ AI chats, research pages, documentation, and selected text into clean Markdown o
 plain text artifacts.
 
 BrowserBeast™ v1.0.1 is Markdown-first. The Markdown export is the source-of-truth
-artifact. Evidence Envelope v0.1 adds structured metadata inside the Markdown
+artifact. Evidence Envelope v0.2 adds structured metadata inside the Markdown
 export so captures can be reviewed, searched, indexed, and reused later.
 
 BrowserBeast™ v1.0.1 Freeware is included inside the DesktopBeast™ v1.0 EA RC2
@@ -25,7 +25,7 @@ automatically install BrowserBeast.
 - Opens captured Markdown in a larger local Full Review tab for serious review.
 - Preserves source URL, title, timestamp, word count, capture mode, detected
   platform, browser, and engine metadata.
-- Emits an Evidence Envelope v0.1 block in Markdown exports.
+- Emits an Evidence Envelope v0.2 block in Markdown exports.
 - Warns when private, logged-in, account, profile, or workspace indicators are
   detected.
 
@@ -81,18 +81,18 @@ Markdown exports include:
 
 - Human-readable title and metadata header.
 - Optional advisory warnings.
-- Evidence Envelope v0.1 structured metadata block.
+- Evidence Envelope v0.2 structured metadata block.
 - Captured content.
 
 The human-readable header remains for ordinary users. The Evidence Envelope
 exists for structured artifact handling.
 
-## Evidence Envelope v0.1
+## Evidence Envelope v0.2
 
 BrowserBeast v1.0.1 emits:
 
 ```yaml
-evidence_envelope_version: "0.1"
+evidence_envelope_version: "0.2"
 ```
 
 The envelope includes these required top-level sections:
@@ -137,7 +137,7 @@ sending them to an AI system.
 BrowserBeast v1.0.1 adds optional Full Review while preserving the Markdown-first
 v1.0 freeware release behavior.
 
-Evidence Envelope v0.1 is green. Visual Companion remains deferred.
+Evidence Envelope v0.2 is green. Visual Companion remains deferred.
 
 ## License
 

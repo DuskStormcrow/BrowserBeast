@@ -204,14 +204,6 @@ async function handleCapture(msg, sendResponse) {
       detectedPlatform: platform
     };
 
-    console.log('[BrowserBeast/bg] captured', {
-      artifactId: capturedContent.artifactId,
-      url: capturedContent.sourceUrl,
-      mode: capturedContent.captureMode,
-      platform: capturedContent.detectedPlatform,
-      words: capturedContent.wordCount
-    });
-
     sendResponse({ success: true, content: capturedContent });
   } catch (err) {
     console.error('[BrowserBeast/bg] capture failed', err);
