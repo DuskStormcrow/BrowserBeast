@@ -1,13 +1,14 @@
 # BrowserBeast Changelog
 
-## v1.0.1 - DesktopBeast Bundle Refresh
+## v1.0.1 - Open Source Release
 
 ### Added
 
 - Optional Open Full Review action for captured content.
 - Local full-review Blob tab using escaped Markdown output.
-- DesktopBeast companion documentation.
 - Evidence Envelope v0.2 in Markdown exports.
+- MIT open-source license and public contribution guidance.
+- Reproducible release packaging script.
 
 ### Preserved
 
@@ -48,10 +49,11 @@ Spike EE-001 + VC-001 Closed: BrowserBeast Markdown-First Release Ready
 
 ### Not Added
 
-- Automatic ArchiveBeast parsing or sync.
 - PersonaVault runtime behavior.
 - Hash chains.
 - Embeddings.
 - Trust scoring.
 - Identity runtime logic.
 - Background auto-capture.
+
+Project home: https://ai-underground.ai/
