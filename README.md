@@ -1,4 +1,4 @@
-# BrowserBeast™ v1.0.1
+# BrowserBeast™ v1.0
 
 **Chrome Extension · Freeware · Open Source**
 
@@ -34,11 +34,11 @@ captured, how it was captured, and which tool produced the artifact.
 
 ## Install from a release ZIP
 
-1. Download and unzip `BrowserBeast-v1.0.1.zip`.
+1. Download and unzip `BrowserBeast-v1.0.zip`.
 2. Open `chrome://extensions` in Chrome.
 3. Enable **Developer mode**.
 4. Click **Load unpacked**.
-5. Select the unzipped `BrowserBeast-v1.0.1` folder.
+5. Select the unzipped `BrowserBeast-v1.0` folder.
 6. Pin BrowserBeast to the toolbar if desired.
 
 See [INSTALL.md](INSTALL.md) for clean-clone and Chromium-browser instructions.
@@ -63,7 +63,7 @@ python scripts/package_release.py
 ```
 
 The packaging script validates the allowlist in `RELEASE_FILES.txt` and creates
-`dist/BrowserBeast-v1.0.1.zip`. Given identical source files, it creates the same
+`dist/BrowserBeast-v1.0.zip`. Given identical source files, it creates the same
 ZIP contents and timestamps on every supported platform.
 
 To test without creating a ZIP, load the repository root with Chrome's
