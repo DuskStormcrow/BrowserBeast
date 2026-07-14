@@ -19,8 +19,8 @@ Project home: https://ai-underground.ai/
 ## Install from a clean clone
 
 ```sh
-git clone https://github.com/DuskStormcrow/BrowserBeastv1.0-freeware.git
-cd BrowserBeastv1.0-freeware
+git clone https://github.com/DuskStormcrow/BrowserBeast.git
+cd BrowserBeast
 ```
 
 Load the repository root with Chrome's **Load unpacked** action. No build command
