@@ -57,8 +57,8 @@ See [INSTALL.md](INSTALL.md) for clean-clone and Chromium-browser instructions.
 BrowserBeast uses vanilla JavaScript and has no compilation step.
 
 ```sh
-git clone https://github.com/DuskStormcrow/BrowserBeastv1.0-freeware.git
-cd BrowserBeastv1.0-freeware
+git clone https://github.com/DuskStormcrow/BrowserBeast.git
+cd BrowserBeast
 python scripts/package_release.py
 ```
 
@@ -115,6 +115,11 @@ design. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [PHILOSOPHY.md](PHILOSOPHY.m
 before proposing a change.
 
 Please report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
+## Contact
+
+Primary: `stormcrow@ai-underground.ai`  
+Fallback: `duskstormcrow@gmail.com`
 
 ## License and marks
 
