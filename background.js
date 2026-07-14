@@ -60,9 +60,8 @@ function detectPlatformFromUrl(url = '') {
 // ---------------------------------------------------------------------
 let capturedContent = null;
 
-function clearCapturedContent(reason = 'unspecified') {
+function clearCapturedContent() {
   capturedContent = null;
-  console.log('[BrowserBeast/bg] cleared captured content:', reason);
 }
 
 // ---------------------------------------------------------------------
@@ -70,10 +69,10 @@ function clearCapturedContent(reason = 'unspecified') {
 // ---------------------------------------------------------------------
 chrome.runtime.onConnect.addListener(port => {
   if (!port || port.name !== 'popup-session') return;
-  clearCapturedContent('new popup session opened');
+  clearCapturedContent();
 
   port.onDisconnect.addListener(() => {
-    clearCapturedContent('popup session disconnected');
+    clearCapturedContent();
   });
 });
 
@@ -81,7 +80,6 @@ chrome.runtime.onConnect.addListener(port => {
 // Message router
 // ---------------------------------------------------------------------
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  console.log('[BrowserBeast/bg]', msg && msg.action);
   switch (msg && msg.action) {
     case 'captureContent':
       handleCapture(msg, sendResponse);
@@ -96,12 +94,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       return false;
 
     case 'clearContent':
-      clearCapturedContent('clearContent action');
+      clearCapturedContent();
       sendResponse({ success: true });
       return false;
 
     case 'popupClosed':
-      clearCapturedContent('popupClosed action');
+      clearCapturedContent();
       sendResponse({ success: true });
       return false;
 
@@ -448,5 +446,4 @@ function capturePageContent({ mode = 'full_render' } = {}) {
 // ---------------------------------------------------------------------
 // Startup
 // ---------------------------------------------------------------------
-clearCapturedContent('service worker startup');
-console.log('[BrowserBeast/bg] service worker initialized — v1.0.1');
+clearCapturedContent();
