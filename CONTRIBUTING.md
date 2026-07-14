@@ -43,6 +43,21 @@ Small, focused improvements are more likely to land than large redesigns.
 
 Keep PRs small and focused. One thing at a time.
 
+## Local setup and release package
+
+There is no compilation step. Clone the repository and load its root folder with
+Chrome's **Load unpacked** action.
+
+Before submitting a change, complete `SIDELOAD_TEST_CHECKLIST.md`. To create the
+same allowlisted ZIP used for releases, run:
+
+```sh
+python scripts/package_release.py
+```
+
+The package is written to `dist/BrowserBeast-v1.0.zip`. Generated ZIP files and
+the `dist` directory are intentionally ignored by Git.
+
 ## Code style
 
 BrowserBeast uses vanilla JavaScript with no build step and no external
@@ -57,3 +72,5 @@ dependencies. Keep it that way.
 
 By contributing, you agree that your contributions will be licensed under
 the MIT License.
+
+Project home: https://ai-underground.ai/

@@ -6,7 +6,7 @@ Word Count: 12
 Capture Mode: Full Render
 Platform: Unknown
 Browser: Chrome 148.0.0.0
-Tool: BrowserBeast v1.0.1
+Tool: BrowserBeast v1.0
 
 ```evidence-envelope
 evidence_envelope_version: "0.2"
@@ -16,7 +16,7 @@ artifact:
   artifact_type: "browser_capture"
   created_at: "2026-05-27T22:10:00-07:00"
   created_by_tool: "BrowserBeast"
-  tool_version: "BrowserBeast v1.0.1"
+  tool_version: "BrowserBeast v1.0"
   capture_status: "success"
 
 source:
@@ -64,3 +64,4 @@ links:
 ## Captured Content
 
 BrowserBeast captures readable page text and preserves structured metadata for review.
+

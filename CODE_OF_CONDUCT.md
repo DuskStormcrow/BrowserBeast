@@ -31,3 +31,5 @@ Issues can be raised with the maintainer at duskstormcrow@gmail.com.
 Serious or repeated violations may result in being blocked from the repository.
 
 The goal is a good tool and a decent place to work on it.
+
+Project home: https://ai-underground.ai/

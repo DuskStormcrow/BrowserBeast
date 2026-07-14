@@ -1,65 +1,37 @@
-# BrowserBeast™ v1.0.1 Freeware Release Notes
+# BrowserBeast™ v1.0 Final Release Notes
 
-## Release Summary
+**Chrome Extension · Freeware · Open Source**
 
-BrowserBeast™ v1.0.1 Freeware is a free Markdown-first browser capture extension for AI
-users, researchers, writers, builders, and digital archivists.
+BrowserBeast v1.0 is the first public MIT-licensed release of the standalone
+BrowserBeast repository. It provides a focused, Markdown-first capture workflow,
+a larger local review surface, and Evidence Envelope v0.2.
 
-Refresh milestone:
+Project home: https://ai-underground.ai/
 
-BrowserBeast v1.0.1 adds optional Full Review for the DesktopBeast companion
-bundle while preserving v1.0 freeware capture/export behavior.
+## Included
 
-## Included In v1.0.1
+- Full Render and Highlighted Text capture modes.
+- **Open Full Review** for reading large captures in a local tab.
+- Escaped review output so script-like captured text displays literally.
+- Copy Markdown, Download `.md`, and Copy Plain Text.
+- Evidence Envelope v0.2 in Markdown exports.
+- Artifact-ID-based download filenames.
+- Advisory privacy-signal warnings.
+- Existing Manifest V3 permissions.
+- Local, user-triggered operation with no account or cloud service.
+- MIT license and public contribution, conduct, security, and philosophy documents.
+- Deterministic, allowlisted release packaging.
 
-- Full Render capture mode.
-- Highlighted Text capture mode.
-- Optional Open Full Review action for a larger local review tab.
-- Markdown export.
-- Plain text export.
-- Human-readable metadata header.
-- Evidence Envelope v0.2 structured metadata in Markdown exports.
-- Advisory privacy signal warnings.
-- Local, user-triggered workflow.
-- Chrome/Chromium unpacked-extension package.
+## Not included
 
-## Evidence Envelope v0.2
+- Automatic or background capture.
+- Cloud sync or accounts.
+- PNG screenshot capture or stitching.
+- Automatic redaction.
+- PersonaVault or Chronicle Engine runtime behavior.
 
-BrowserBeast™ v1.0.1 emits `evidence_envelope_version: "0.2"` in Markdown exports.
+## Verification
 
-The envelope records artifact, source, content, privacy, validation, optional
-identity, and link metadata.
-
-Markdown remains the source-of-truth artifact.
-
-## Deferred
-
-- Optional PNG Visual Companion capture.
-- Visible viewport screenshot companion files.
-- Any full-page screenshot or stitching work.
-
-## Not Included
-
-- Automatic ArchiveBeast parsing or sync.
-- PersonaVault runtime work.
-- Hash chains.
-- Embeddings.
-- Trust scoring.
-- Identity runtime logic.
-- Background auto-capture.
-- Cloud sync or account system.
-- Automatic ArchiveBeast sync.
-
-## DesktopBeast Companion Notes
-
-BrowserBeast captures browser/web artifacts. DesktopBeast captures
-desktop/application/window artifacts. BrowserBeast is included as a companion
-extension inside the DesktopBeast ZIP and is loaded separately through Chrome or a
-Chromium-based browser. ArchiveBeast Library can review BrowserBeast Markdown
-captures when the Browser shelf is pointed at the folder containing those
-captures.
-
-## Release Posture
-
-BrowserBeast™ v1.0.1 Freeware is ready for the DesktopBeast v1.0 EA RC2 bundle as
-a Markdown-first extension with Evidence Envelope v0.2 structured metadata.
+The source contains no compilation step or third-party dependencies. Run
+`python scripts/package_release.py` from a clean clone, then complete
+`SIDELOAD_TEST_CHECKLIST.md` against the generated ZIP.

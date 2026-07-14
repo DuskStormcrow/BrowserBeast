@@ -1,57 +1,23 @@
 # BrowserBeast Changelog
 
-## v1.0.1 - DesktopBeast Bundle Refresh
+## v1.0 - Final Open-Source Release
 
-### Added
+### Included
 
-- Optional Open Full Review action for captured content.
-- Local full-review Blob tab using escaped Markdown output.
-- DesktopBeast companion documentation.
+- Full Render and Highlighted Text capture modes.
+- Markdown and plain-text export.
+- Local Full Review tab with escaped captured content.
 - Evidence Envelope v0.2 in Markdown exports.
+- Artifact-ID-based download filenames.
+- Advisory privacy-signal detection.
+- Chrome Manifest V3 extension with no runtime dependencies or build framework.
+- MIT open-source license and public contribution guidance.
+- Deterministic, allowlisted release packaging.
 
-### Preserved
+### Release posture
 
-- Existing capture/export behavior.
-- Existing Chrome/Chromium extension permissions.
-- Markdown-first artifact model.
+- Standalone BrowserBeast distribution.
+- Local, user-triggered capture only.
+- No account, cloud service, automatic capture, or automatic redaction.
 
-## v1.0.0 - Freeware Release
-
-Release posture: Markdown-first release-ready.
-
-Milestone:
-
-Spike EE-001 + VC-001 Closed: BrowserBeast Markdown-First Release Ready
-
-### Added
-
-- Evidence Envelope v0.1 structured metadata block in Markdown exports.
-- Required envelope sections: artifact, source, content, privacy, validation,
-  identity, and links.
-- BrowserBeast real Full Render validation for Evidence Envelope emission.
-- Public release packaging docs for freeware distribution.
-
-### Preserved
-
-- Full Render capture mode.
-- Highlighted Text capture mode.
-- Markdown export behavior.
-- Plain text export behavior.
-- Human-readable metadata header.
-- Advisory privacy warnings.
-- Existing Chrome/Chromium extension permissions.
-
-### Deferred
-
-- PNG Visual Companion capture moved to BrowserBeast v1.1.
-- Full-page screenshot stitching remains out of scope.
-
-### Not Added
-
-- Automatic ArchiveBeast parsing or sync.
-- PersonaVault runtime behavior.
-- Hash chains.
-- Embeddings.
-- Trust scoring.
-- Identity runtime logic.
-- Background auto-capture.
+Project home: https://ai-underground.ai/

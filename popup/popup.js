@@ -1,5 +1,5 @@
 /**
- * BrowserBeast v1.0.1 — Popup Script
+ * BrowserBeast v1.0 — Popup Script
  * Two modes: Full Render | Highlighted Text
  * Flow: Capture → Preview → Export (Markdown/Plain Text)
  */
@@ -10,7 +10,7 @@ const CAPTURE_MODE_LABELS = {
 };
 
 const COPY_SUCCESS_MS = 1500;
-const BROWSERBEAST_VERSION_LABEL = 'BrowserBeast v1.0.1';
+const BROWSERBEAST_VERSION_LABEL = 'BrowserBeast v1.0';
 
 const $ = id => document.getElementById(id);
 
@@ -187,7 +187,7 @@ async function onCapture(mode) {
     }
 
     captured = res.content;
-    // Attach browser/engine metadata
+    // Attach browser/tool metadata
     captured.browser = browserName;
     captured.engine = BROWSERBEAST_VERSION_LABEL;
     captured.renderEngine = engineName;
@@ -943,5 +943,3 @@ function setStatus(text, kind = 'ready') {
   if (kind === 'busy') statusDot.classList.add('busy');
   if (kind === 'error') statusDot.classList.add('error');
 }
-
-console.log('[BrowserBeast/popup] v1.0.1 ready');

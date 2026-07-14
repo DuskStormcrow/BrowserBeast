@@ -2,6 +2,7 @@
 *.zip
 *.crx
 *.pem
+/dist/
 
 # Browser/user capture outputs
 /BrowserBeast_*_FullRender_*.md

@@ -35,3 +35,5 @@ Include:
 You will receive an acknowledgement within a few days. Fixes will be
 prioritized based on severity. If you would like credit in the release notes,
 just say so when you report.
+
+Project home: https://ai-underground.ai/

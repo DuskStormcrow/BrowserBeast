@@ -25,7 +25,7 @@
 
     document.title = `${title} - BrowserBeast Full Review`;
     titleEl.textContent = title;
-    metaEl.textContent = `BrowserBeast v1.0.1 local full review - ${payload.createdAt || ''}`;
+    metaEl.textContent = `BrowserBeast v1.0 local full review - ${payload.createdAt || ''}`;
     summaryEl.textContent = summary;
     contentEl.textContent = markdown;
   } catch (_) {
@@ -34,3 +34,4 @@
     localStorage.removeItem(key);
   }
 })();
+

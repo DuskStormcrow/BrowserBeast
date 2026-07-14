@@ -1,40 +1,67 @@
-# BrowserBeast™ v1.0.1 Install Guide
+# Install BrowserBeast™ v1.0
 
-BrowserBeast™ v1.0.1 Freeware may be distributed on its own or bundled as a
-companion extension inside the DesktopBeast™ v1.0 EA RC2 ZIP. BrowserBeast must
-still be loaded separately as a browser extension.
+BrowserBeast™ is a free, open-source Chrome extension. It uses vanilla JavaScript
+and requires no dependency installation or compilation.
 
-## Chrome / Chromium Sideload
+Project home: https://ai-underground.ai/
 
-1. Unzip the BrowserBeast release package, or extract the DesktopBeast ZIP and
-   open the included BrowserBeast folder.
-2. Open `chrome://extensions`.
-3. Enable **Developer mode**.
-4. Click **Load unpacked**.
-5. Select the unzipped `BrowserBeast-v1.0.1-Freeware` folder.
-6. Pin BrowserBeast to your toolbar if desired.
+## Install the release ZIP in Chrome
 
-## First Test
+1. Download `BrowserBeast-v1.0.zip` from the official release.
+2. Unzip it into a clean folder.
+3. Open `chrome://extensions`.
+4. Enable **Developer mode**.
+5. Click **Load unpacked**.
+6. Select the extracted `BrowserBeast-v1.0` folder containing `manifest.json`.
+7. Confirm BrowserBeast loads without errors.
+8. Pin it to the toolbar if desired.
+
+## Install from a clean clone
+
+```sh
+git clone https://github.com/DuskStormcrow/BrowserBeastv1.0-freeware.git
+cd BrowserBeastv1.0-freeware
+```
+
+Load the repository root with Chrome's **Load unpacked** action. No build command
+is required.
+
+## Create the release ZIP
+
+Python 3.9 or newer is recommended for the release-packaging helper.
+
+```sh
+python scripts/package_release.py
+```
+
+The script packages only the files listed in `RELEASE_FILES.txt` and writes
+`dist/BrowserBeast-v1.0.zip`.
+
+## First test
 
 1. Open a normal webpage.
 2. Click the BrowserBeast toolbar icon.
 3. Choose **Full Render**.
 4. Confirm the preview appears.
-5. Try **Open Full Review**, **Copy Markdown**, and **Download .md**.
+5. Test **Open Full Review**, **Copy Markdown**, and **Download .md**.
+6. Select text on a page and verify **Highlighted Text** captures only that text.
 
-## Highlighted Text Test
+Complete [SIDELOAD_TEST_CHECKLIST.md](SIDELOAD_TEST_CHECKLIST.md) before publishing
+a release package.
 
-1. Select text on a webpage.
-2. Open BrowserBeast.
-3. Choose **Highlighted Text**.
-4. Confirm only the selected text is captured.
+## Chromium browsers
 
-## Notes
+Edge, Brave, Opera, and Vivaldi have similar extension-loading screens, but Chrome
+is the primary verified browser for v1.0. In Edge, start at `edge://extensions`.
 
-BrowserBeast™ cannot capture browser-internal pages such as `chrome://extensions`, `edge://settings`, or `about:blank`.
+## Browser restrictions
 
-Chrome may warn that BrowserBeast™ can read and change data on websites. BrowserBeast™ requests broad access so it can capture the page you choose, wherever you are. Capture only runs when you click the BrowserBeast™ toolbar button.
+BrowserBeast cannot capture browser-internal pages such as `chrome://extensions`,
+`edge://settings`, or `about:blank`.
 
-BrowserBeast captures browser/web artifacts. DesktopBeast captures desktop/application/window artifacts. ArchiveBeast™ Library can review BrowserBeast Markdown captures when the Browser shelf is pointed at the folder containing those captures. BrowserBeast does not automatically sync into ArchiveBeast yet.
+Chrome may warn that BrowserBeast can read and change data on websites. Broad host
+access allows the extension to capture the page the user chooses. Capture runs
+only after the user clicks a BrowserBeast capture action.
 
-Review captures before sharing. BrowserBeast™ may preserve private/logged-in indicators or page content visible at capture time.
+Review every capture before sharing it. BrowserBeast may preserve private,
+logged-in, or otherwise sensitive content visible at capture time.

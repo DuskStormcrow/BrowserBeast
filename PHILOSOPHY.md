@@ -63,3 +63,5 @@ easy to audit, and resistant to dependency rot.
 
 A tool that still works in five years is worth more than one that is impressive
 today and broken tomorrow.
+
+Project home: https://ai-underground.ai/

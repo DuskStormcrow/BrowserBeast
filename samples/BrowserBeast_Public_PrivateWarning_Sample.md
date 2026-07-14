@@ -6,7 +6,7 @@ Word Count: 9
 Capture Mode: Full Render
 Platform: Unknown
 Browser: Chrome 148.0.0.0
-Tool: BrowserBeast v1.0.1
+Tool: BrowserBeast v1.0
 
 Private/logged-in indicators detected. Signals: account, dashboard. Review before sharing.
 
@@ -18,7 +18,7 @@ artifact:
   artifact_type: "browser_capture"
   created_at: "2026-05-27T22:11:00-07:00"
   created_by_tool: "BrowserBeast"
-  tool_version: "BrowserBeast v1.0.1"
+  tool_version: "BrowserBeast v1.0"
   capture_status: "success"
 
 source:
@@ -68,3 +68,4 @@ links:
 ## Captured Content
 
 Example dashboard content. Review private captures before sharing them.
+
