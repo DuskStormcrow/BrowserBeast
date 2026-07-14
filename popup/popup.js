@@ -187,7 +187,7 @@ async function onCapture(mode) {
     }
 
     captured = res.content;
-    // Attach browser/engine metadata
+    // Attach browser/tool metadata
     captured.browser = browserName;
     captured.engine = BROWSERBEAST_VERSION_LABEL;
     captured.renderEngine = engineName;
@@ -943,5 +943,3 @@ function setStatus(text, kind = 'ready') {
   if (kind === 'busy') statusDot.classList.add('busy');
   if (kind === 'error') statusDot.classList.add('error');
 }
-
-console.log('[BrowserBeast/popup] v1.0.1 ready');
