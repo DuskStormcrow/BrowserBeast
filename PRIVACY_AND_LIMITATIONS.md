@@ -41,7 +41,7 @@ Depending on capture mode and page content, BrowserBeast may capture:
 - Capture mode.
 - Captured Markdown shown in a local Full Review tab when the user chooses that
   action.
-- Browser and engine metadata.
+- Browser and tool metadata.
 - Detected platform name.
 - Private/logged-in advisory signals.
 
@@ -68,10 +68,11 @@ system.
 - Noisy web pages may include menus, navigation, banners, or unrelated text.
 - Privacy warnings are advisory and may miss sensitive content.
 - BrowserBeast™ v1.0.1 does not capture PNG visual companions.
-- BrowserBeast does not automatically sync captures into ArchiveBeast yet.
 
 ## Evidence Envelope
 
 Evidence Envelope v0.2 records privacy signals in structured metadata, but it
 does not redact content automatically and does not certify that a capture is safe
 to share.
+
+Project home: https://ai-underground.ai/
