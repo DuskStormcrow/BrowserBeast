@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Create the deterministic BrowserBeast v1.0.1 release ZIP."""
+"""Create the deterministic BrowserBeast v1.0 release ZIP."""
 
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "1.0.1"
+VERSION = "1.0"
 PACKAGE_ROOT = f"BrowserBeast-v{VERSION}"
 OUTPUT = ROOT / "dist" / f"BrowserBeast-v{VERSION}.zip"
 RELEASE_LIST = ROOT / "RELEASE_FILES.txt"
