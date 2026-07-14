@@ -1,8 +1,8 @@
-# BrowserBeast™ v1.0.1 Release Notes
+# BrowserBeast™ v1.0 Release Notes
 
 **Chrome Extension · Freeware · Open Source**
 
-BrowserBeast v1.0.1 is the first public MIT-licensed release of the standalone
+BrowserBeast v1.0 is the first public MIT-licensed release of the standalone
 BrowserBeast repository. It preserves the focused Markdown-first capture workflow
 and adds a larger local review surface plus Evidence Envelope v0.2.
 
@@ -39,5 +39,3 @@ Project home: https://ai-underground.ai/
 The source contains no compilation step or third-party dependencies. Run
 `python scripts/package_release.py` from a clean clone, then complete
 `SIDELOAD_TEST_CHECKLIST.md` against the generated ZIP.
-
-See `RELEASE_NOTES_v1.0.md` for the original v1.0 freeware milestone.
