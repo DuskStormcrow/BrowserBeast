@@ -21,8 +21,9 @@ Use GitHub's private security advisory feature:
 
 **Repository → Security → Report a vulnerability**
 
-Or send an email to duskstormcrow@gmail.com with the subject line
-`BrowserBeast Security`.
+Or email `stormcrow@ai-underground.ai` with the subject line
+`BrowserBeast Security`. If delivery to that address fails, use
+`duskstormcrow@gmail.com`.
 
 Include:
 
