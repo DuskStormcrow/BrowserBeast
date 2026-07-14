@@ -1,4 +1,4 @@
-# BrowserBeast™ v1.0.1 Post-Install Verification
+# BrowserBeast™ v1.0 Post-Install Verification
 
 Use these steps to confirm your BrowserBeast installation is working correctly.
 
@@ -6,7 +6,7 @@ Use these steps to confirm your BrowserBeast installation is working correctly.
 
 ## Installation
 
-- [ ] Unzip `BrowserBeast-v1.0.1-Freeware.zip` into a clean folder.
+- [ ] Unzip `BrowserBeast-v1.0.zip` into a clean folder.
 - [ ] Open `chrome://extensions`.
 - [ ] Enable Developer mode.
 - [ ] Click **Load unpacked** and select the BrowserBeast folder.
@@ -17,8 +17,8 @@ Use these steps to confirm your BrowserBeast installation is working correctly.
 - [ ] Extension name shows **BrowserBeast**.
 - [ ] Toolbar tooltip shows **BrowserBeast — Capture. Export. Enjoy.**
 - [ ] Popup header shows **BrowserBeast™**.
-- [ ] Footer shows **BrowserBeast v1.0.1**.
-- [ ] TOOL field shows **BrowserBeast v1.0.1** after capture.
+- [ ] Footer shows **BrowserBeast v1.0**.
+- [ ] TOOL field shows **BrowserBeast v1.0** after capture.
 
 ## Full Render
 
