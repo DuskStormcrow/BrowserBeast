@@ -55,7 +55,7 @@ same allowlisted ZIP used for releases, run:
 python scripts/package_release.py
 ```
 
-The package is written to `dist/BrowserBeast-v1.0.1.zip`. Generated ZIP files and
+The package is written to `dist/BrowserBeast-v1.0.zip`. Generated ZIP files and
 the `dist` directory are intentionally ignored by Git.
 
 ## Code style
