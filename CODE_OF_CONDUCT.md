@@ -27,7 +27,8 @@ harassment, and bad faith are not.
 
 ## Enforcement
 
-Issues can be raised with the maintainer at duskstormcrow@gmail.com.
+Issues can be raised with the maintainer at `stormcrow@ai-underground.ai`.
+If delivery to that address fails, use `duskstormcrow@gmail.com`.
 Serious or repeated violations may result in being blocked from the repository.
 
 The goal is a good tool and a decent place to work on it.
