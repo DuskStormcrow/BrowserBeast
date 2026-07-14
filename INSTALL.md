@@ -1,4 +1,4 @@
-# Install BrowserBeast™ v1.0.1
+# Install BrowserBeast™ v1.0
 
 BrowserBeast™ is a free, open-source Chrome extension. It uses vanilla JavaScript
 and requires no dependency installation or compilation.
@@ -7,12 +7,12 @@ Project home: https://ai-underground.ai/
 
 ## Install the release ZIP in Chrome
 
-1. Download `BrowserBeast-v1.0.1.zip` from the official release.
+1. Download `BrowserBeast-v1.0.zip` from the official release.
 2. Unzip it into a clean folder.
 3. Open `chrome://extensions`.
 4. Enable **Developer mode**.
 5. Click **Load unpacked**.
-6. Select the extracted `BrowserBeast-v1.0.1` folder containing `manifest.json`.
+6. Select the extracted `BrowserBeast-v1.0` folder containing `manifest.json`.
 7. Confirm BrowserBeast loads without errors.
 8. Pin it to the toolbar if desired.
 
@@ -35,7 +35,7 @@ python scripts/package_release.py
 ```
 
 The script packages only the files listed in `RELEASE_FILES.txt` and writes
-`dist/BrowserBeast-v1.0.1.zip`.
+`dist/BrowserBeast-v1.0.zip`.
 
 ## First test
 
@@ -52,7 +52,7 @@ a release package.
 ## Chromium browsers
 
 Edge, Brave, Opera, and Vivaldi have similar extension-loading screens, but Chrome
-is the primary verified browser for v1.0.1. In Edge, start at `edge://extensions`.
+is the primary verified browser for v1.0. In Edge, start at `edge://extensions`.
 
 ## Browser restrictions
 
