@@ -1,4 +1,4 @@
-# BrowserBeast™ v1.0.1 Privacy And Limitations
+# BrowserBeast™ v1.0 Privacy And Limitations
 
 ## Privacy Posture
 
@@ -13,7 +13,7 @@ text.
 
 ## Permissions
 
-BrowserBeast™ v1.0.1 requests:
+BrowserBeast™ v1.0 requests:
 
 ```json
 "permissions": [
@@ -67,7 +67,7 @@ system.
 - Dynamic pages may need to finish loading before capture.
 - Noisy web pages may include menus, navigation, banners, or unrelated text.
 - Privacy warnings are advisory and may miss sensitive content.
-- BrowserBeast™ v1.0.1 does not capture PNG visual companions.
+- BrowserBeast™ v1.0 does not capture PNG visual companions.
 
 ## Evidence Envelope
 
