@@ -1,45 +1,41 @@
-# BrowserBeast™ v1.0.1 Freeware Release Notes
+# BrowserBeast™ v1.0.1 Release Notes
 
-## Release Summary
+**Chrome Extension · Freeware · Open Source**
 
-BrowserBeast™ v1.0.1 Freeware is a focused DesktopBeast companion refresh. It
-keeps the v1.0 Markdown-first capture/export workflow and adds an optional
-full-size review surface for captured content.
+BrowserBeast v1.0.1 is the first public MIT-licensed release of the standalone
+BrowserBeast repository. It preserves the focused Markdown-first capture workflow
+and adds a larger local review surface plus Evidence Envelope v0.2.
+
+Project home: https://ai-underground.ai/
 
 ## Added
 
-- `Open Full Review` action in the popup preview stage.
-- Local Blob-based review tab for the same Markdown artifact used by Copy
-  Markdown and Download `.md`.
-- Escaped review output so script-like captured text displays literally instead
-  of executing.
-- DesktopBeast companion documentation.
+- **Open Full Review** for reading large captures in a local tab.
+- Escaped review output so script-like captured text displays literally.
+- Evidence Envelope v0.2 in Markdown exports.
+- Artifact-ID-based download filenames.
+- MIT license, contribution guidance, security policy, code of conduct, and
+  project philosophy.
+- Deterministic, allowlisted release packaging.
 
 ## Preserved
 
-- Full Render capture mode.
-- Highlighted Text capture mode.
-- Copy Markdown.
-- Download `.md`.
-- Copy Plain Text.
-- Existing extension permissions.
-- Local, user-triggered capture/export workflow.
+- Full Render and Highlighted Text capture modes.
+- Copy Markdown, Download `.md`, and Copy Plain Text.
+- Advisory privacy-signal warnings.
+- Existing Manifest V3 permissions.
+- Local, user-triggered operation with no account or cloud service.
 
-## DesktopBeast Companion Notes
+## Not included
 
-BrowserBeast captures browser/web artifacts. DesktopBeast captures
-desktop/application/window artifacts. BrowserBeast is included as a companion
-extension inside the DesktopBeast ZIP and is loaded separately through Chrome or a
-Chromium-based browser.
+- Automatic or background capture.
+- Cloud sync or accounts.
+- PNG screenshot capture or stitching.
+- Automatic redaction.
+- PersonaVault or Chronicle Engine runtime behavior.
 
-ArchiveBeast™ Library can review BrowserBeast Markdown captures when the Browser
-shelf is pointed at the folder containing those Markdown files. BrowserBeast does
-not automatically sync into ArchiveBeast yet.
+## Verification
 
-## Not Included
-
-- PNG Visual Companion capture.
-- Full-page screenshot stitching.
-- Background auto-capture.
-- Cloud sync or account system.
-- Automatic ArchiveBeast sync.
+The source contains no compilation step or third-party dependencies. Run
+`python scripts/package_release.py` from a clean clone, then complete
+`SIDELOAD_TEST_CHECKLIST.md` against the generated ZIP.
