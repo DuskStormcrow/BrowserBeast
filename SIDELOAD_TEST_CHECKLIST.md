@@ -40,11 +40,12 @@ Use these steps to confirm your BrowserBeast installation is working correctly.
 - [ ] Capture contains only the selected text.
 - [ ] Selection note appears in preview and exports.
 
-## DesktopBeast Companion Notes
+## Export Verification
 
-BrowserBeast captures browser/web artifacts.
-DesktopBeast captures desktop/application/window artifacts.
-BrowserBeast is bundled as a companion extension and loaded separately.
-ArchiveBeast™ Library can review BrowserBeast Markdown captures when its Browser
-shelf is pointed at the folder containing those captures.
-BrowserBeast does not automatically sync into ArchiveBeast yet.
+- [ ] Markdown contains `evidence_envelope_version: "0.2"`.
+- [ ] Evidence Envelope contains artifact, source, content, privacy, validation,
+  identity, integrity, and links sections.
+- [ ] A capture from a logged-in page displays an advisory privacy warning.
+- [ ] No routine debug messages appear in the extension service worker console.
+
+Project home: https://ai-underground.ai/
