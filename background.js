@@ -1,5 +1,5 @@
 /**
- * BrowserBeast v1.0.1 — Background Service Worker
+ * BrowserBeast v1.0 — Background Service Worker
  * ----------------------------------------------------------------------
  * Two capture modes only:
  *   1. Full Render   — full rendered page text, minimal junk stripping
