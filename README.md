@@ -6,7 +6,7 @@ AI chats disappear into account histories. Research trails lose their context. C
 
 BrowserBeast™ turns browser pages, AI chats, research trails, documentation, and highlighted text into durable local Markdown or plain-text records—complete with source context, capture metadata, Evidence Envelope structure, and advisory privacy signals.
 
-**Built for people who need records. . . with receipts.**
+**Built for people who need records... with receipts.**
 
 ## Why BrowserBeast exists
 
